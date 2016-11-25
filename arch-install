@@ -39,10 +39,10 @@ else
 fi
 
 #Check root
-if [[ $EUID -ne 0 ]]; then
-        echo -e "\e[1;31mYou don't have admin privilegies, execute the script as root."$transparent
-				exit
-fi
+#if [[ $EUID -ne 0 ]]; then
+#        echo -e "\e[1;31mYou don't have admin privilegies, execute the script as root."$transparent
+#				exit
+#fi
 
 clear
 
@@ -147,7 +147,7 @@ conditional_clear
 mostrarheader
 
 echo "Updating system..."
-sudo pacman -S xterm --yes
+sudo pacman -S xterm --noconfirm 2>&1 > /dev/null
 
 
 ##############################
@@ -155,7 +155,8 @@ sudo pacman -S xterm --yes
 echo -ne "Aircrack-ng....."
 	if ! hash aircrack-ng 2>/dev/null; then
 		echo -e "\e[1;31mInstalling ..."$transparent
-	 xterm $HOLD -title "Installing Aircrack-ng" -e pacman -S  aircrack-ng
+	 #xterm $HOLD -title "Installing Aircrack-ng" -e 
+		sudo pacman -S  aircrack-ng --noconfirm 2>&1 > /dev/null
 	else
     echo -e "\e[1;32mOK!"$transparent
 	fi
@@ -166,7 +167,7 @@ echo -ne "Aircrack-ng....."
 echo -ne "Aireplay-ng....."
 	if ! hash awk 2>/dev/null; then
 		echo -e "\e[1;31mInstalling ..."$transparent""
-		xterm $HOLD -title "Installing Awk" $TOPLEFTBIG -bg "#FFFFFF" -fg "#000000" -e pacman -S  gawk
+		sudo pacman -S  gawk --noconfirm 2>&1 > /dev/null
 	else
 		echo -e "\e[1;32mOK!"$transparent
 	fi
@@ -176,7 +177,7 @@ echo -ne "Aireplay-ng....."
 echo -ne "Airodump-ng....."
 if ! hash airodump-ng 2>/dev/null; then
 	echo -e "\e[1;31mInstalling ..."$transparent""
-	xterm $HOLD -title "Installing Airodump-ng" $TOPLEFTBIG -bg "#FFFFFF" -fg "#000000" -e pacman -S  aircrack-ng
+	sudo pacman -S  aircrack-ng --noconfirm 2>&1 > /dev/null
 else
 	echo -e "\e[1;32mOK!"$transparent""
 fi
@@ -185,7 +186,7 @@ fi
 	if ! hash bully 2>/dev/null; then
 		echo -e "\e[1;31mInstalling ..."$transparent""
 		cd /tmp;sudo git clone https://aur.archlinux.org/bully.git 2>/dev/null;	cd bully; sudo makepkg; sudo pacman -U *.pkg.tar.xz
-		xterm $HOLD -title "Installing Bully" $TOPLEFTBIG -bg "#FFFFFF" -fg "#000000" -e pacman -S  bully
+		sudo pacman -S  bully --noconfirm 2>&1 > /dev/null
 	else
 		echo -e "\e[1;32mOK!"$transparent""
 	fi
@@ -194,7 +195,7 @@ fi
 echo -ne "Curl............"
 	if ! hash curl 2>/dev/null; then
 		echo -e "\e[1;31mInstalling ..."$transparent""
-			xterm $HOLD -title "Installing Curl" $TOPLEFTBIG -bg "#FFFFFF" -fg "#000000" -e pacman -S  curl
+			sudo pacman -S  curl --noconfirm 2>&1 > /dev/null
 	else
 		echo -e "\e[1;32mOK!"$transparent
   fi
@@ -204,7 +205,7 @@ echo -ne "Curl............"
 echo -ne "Dhcpd..........."
 	if ! hash dhcpd 2>/dev/null; then
 		echo -e "\e[1;31mInstalling ..."$transparent""
-		xterm $HOLD -title "Installing isc-dhcp-server" $TOPLEFTBIG -bg "#FFFFFF" -fg "#000000" -e pacman -S dhcp
+		sudo pacman -S dhcp --noconfirm 2>&1 > /dev/null
 	else
 		echo -e "\e[1;32mOK!"$transparent
   	fi
@@ -214,7 +215,7 @@ echo -ne "Dhcpd..........."
 echo -ne "Hostapd........."
 	if ! hash hostapd 2>/dev/null; then
 		echo -e "\e[1;31mInstalling ..."$transparent""
-		xterm $HOLD -title "Installing Hostapd" $TOPLEFTBIG -bg "#FFFFFF" -fg "#000000" -e pacman -S  hostapd
+		sudo pacman -S  hostapd --noconfirm 2>&1 > /dev/null
 	else
 		echo -e "\e[1;32mOK!"$transparent
   	fi
@@ -224,7 +225,7 @@ echo -ne "Hostapd........."
 echo -ne "Iwconfig........"
 if ! hash iwconfig 2>/dev/null; then
 			echo -e "\e[1;31mInstalling ..."$transparent""
-			xterm $HOLD -title "Installing Iwconfig" $TOPLEFTBIG -bg "#FFFFFF" -fg "#000000" -e pacman -S  iwconfig
+			sudo pacman -S  iwconfig --noconfirm 2>&1 > /dev/null
 else
 	echo -e "\e[1;32mOK!"$transparent""
 fi
@@ -233,7 +234,7 @@ sleep 0.025
 	echo -ne "Lighttpd........"
 	if ! hash lighttpd 2>/dev/null; then
 		echo -e "\e[1;31mInstalling ..."$transparent""
-			xterm $HOLD -title "Installing Lighttpd" $TOPLEFTBIG -bg "#FFFFFF" -fg "#000000" -e pacman -S  lighttpd
+			sudo pacman -S  lighttpd --noconfirm 2>&1 > /dev/null
 	else
 		echo -e "\e[1;32mOK!"$transparent
   	fi
@@ -243,7 +244,7 @@ sleep 0.025
 echo -ne "Macchanger......"
 	if ! hash macchanger 2>/dev/null; then
 		echo -e "\e[1;31mInstalling ..."$transparent""
-			xterm $HOLD -title "Installing Macchanger" $TOPLEFTBIG -bg "#FFFFFF" -fg "#000000" -e pacman -S  macchanger
+			sudo pacman -S  macchanger --noconfirm 2>&1 > /dev/null
 	else
 		echo -e "\e[1;32mOK!"$transparent
   fi
@@ -253,7 +254,7 @@ echo -ne "Macchanger......"
 echo -ne "Mdk3............"
 	if ! hash mdk3 2>/dev/null; then
 	echo -e "\e[1;31mInstalling ..."$transparent""
-	xterm $HOLD -title "Installing Macchanger" $TOPLEFTBIG -bg "#FFFFFF" -fg "#000000" -e pacman -S  mdk3
+	sudo pacman -S  mdk3 --noconfirm 2>&1 > /dev/null
 	else
 		echo -e "\e[1;32mOK!"$transparent
   fi
@@ -264,7 +265,7 @@ echo -ne "Mdk3............"
 echo -ne "Nmap............"
 	if ! hash nmap 2>/dev/null; then
 		echo -e "\e[1;31mInstalling ..."$transparent""
-		xterm $HOLD -title "Installing Nmap" $TOPLEFTBIG -bg "#FFFFFF" -fg "#000000" -e pacman -S nmap
+		sudo pacman -S nmap --noconfirm 2>&1 > /dev/null
 	else
 		echo -e "\e[1;32mOK!"$transparent
   fi
@@ -273,7 +274,7 @@ echo -ne "Nmap............"
 echo -ne "Openssl........."
 if ! hash openssl 2>/dev/null; then
 	echo -e "\e[1;31mInstalling ..."$transparent""
-	xterm $HOLD -title "Installing Openssl" $TOPLEFTBIG -bg "#FFFFFF" -fg "#000000" -e pacman -S  openssl
+	sudo pacman -S  openssl --noconfirm 2>&1 > /dev/null
 else
 	echo -e "\e[1;32mOK!"$transparent""
 fi
@@ -282,7 +283,7 @@ sleep 0.025
 echo -ne "Php-cgi........"
 	if ! hash php-cgi 2>/dev/null; then
 		echo -e "\e[1;31mInstalling ..."$transparent""
-			xterm $HOLD -title "Installing php-cgi" $TOPLEFTBIG -bg "#FFFFFF" -fg "#000000" -e pacman -S  php-cgi
+			sudo pacman -S  php-cgi --noconfirm 2>&1 > /dev/null
 	else
 		echo -e "\e[1;32mOK!"$transparent
   fi
@@ -292,7 +293,7 @@ echo -ne "Php-cgi........"
 	echo -ne "Pyrit..........."
 	if ! hash pyrit 2>/dev/null; then
 		echo -e "\e[1;31mInstalling ..."$transparent""
-		xterm $HOLD -title "Installing Pyrit" $TOPLEFTBIG -bg "#FFFFFF" -fg "#000000" -e pacman -S  pyrit
+		sudo pacman -S  pyrit --noconfirm 2>&1 > /dev/null
 	else
 		echo -e "\e[1;32mOK!"$transparent
   fi
@@ -302,7 +303,7 @@ echo -ne "Php-cgi........"
 echo -ne "Python.........."
 	if ! hash python 2>/dev/null; then
 		echo -e "\e[1;31mInstalling ..."$transparent""
-			xterm $HOLD -title "Installing Python" $TOPLEFTBIG -bg "#FFFFFF" -fg "#000000" -e pacman -S  python
+			sudo pacman -S  python --noconfirm 2>&1 > /dev/null
 	else
 		echo -e "\e[1;32mOK!"$transparent
   fi
@@ -312,7 +313,7 @@ echo -ne "Python.........."
 	echo -ne "Reaver.........."
 	if ! hash reaver 2>/dev/null; then
 		echo -e "\e[1;31mInstalling ..."$transparent""
-		xterm $HOLD -title "Installing Reaver" $TOPLEFTBIG -bg "#FFFFFF" -fg "#000000" -e pacman -S  reaver
+		sudo pacman -S  reaver --noconfirm 2>&1 > /dev/null
 	else
 		echo -e "\e[1;32mOK!"$transparent""
 	fi
@@ -322,7 +323,7 @@ echo -ne "Python.........."
 	echo -ne "rfkill.........."
         if ! hash rfkill 2>/dev/null; then
               echo -e "\e[1;31mInstalling ..."$transparent""
-              xterm $HOLD -title "Installing Rfkill" $TOPLEFTBIG -bg "#FFFFFF" -fg "#000000" -e pacman -S  rfkill
+              sudo pacman -S  rfkill --noconfirm 2>&1 > /dev/null
         else
                 echo -e "\e[1;32mOK!"$transparent""
         fi
@@ -333,7 +334,7 @@ echo -ne "Python.........."
 echo -ne "Unzip..........."
 	if ! hash unzip 2>/dev/null; then
 		echo -e "\e[1;31mInstalling ..."$transparent""
-			xterm $HOLD -title "Installing unzip" $TOPLEFTBIG -bg "#FFFFFF" -fg "#000000" -e pacman -S  unzip
+			sudo pacman -S  unzip --noconfirm 2>&1 > /dev/null
 	else
 		echo -e "\e[1;32mOK!"$transparent
   fi
@@ -343,7 +344,7 @@ echo -ne "Unzip..........."
 echo -ne "Zenity.........."
 if ! hash zenity 2>/dev/null; then
 	echo -e "\e[1;31mInstalling ..."$transparent""
-	xterm $HOLD -title "Installing Zenity" $TOPLEFTBIG -bg "#FFFFFF" -fg "#000000" -e pacman -S  zenity
+	sudo pacman -S  zenity --noconfirm 2>&1 > /dev/null
 else
 	echo -e "\e[1;32mOK!"$transparent""
 fi
@@ -352,7 +353,7 @@ sleep 0.025
 echo -ne "strings.........."
 if ! hash strings 2>/dev/null; then
         echo -e "\e[1;31mInstalling ..."$transparent""
-        xterm $HOLD -title "Installing binutils" $TOPLEFTBIG -bg "#FFFFFF" -fg "#000000" -e pacman -S  binutils
+        sudo pacman -S  binutils --noconfirm 2>&1 > /dev/null
 else
         echo -e "\e[1;32mOK!"$transparent""
 fi
@@ -361,7 +362,7 @@ sleep 0.025
 echo -ne "fuser............"
 if ! hash fuser 2>/dev/null; then
         echo -e "\e[1;31mInstalling ..."$transparent""
-        xterm $HOLD -title "Installing psmisc" $TOPLEFTBIG -bg "#FFFFFF" -fg "#000000" -e pacman -S  psmisc
+        sudo pacman -S  psmisc --noconfirm 2>&1 > /dev/null
 else
         echo -e "\e[1;32mOK!"$transparent""
 fi
